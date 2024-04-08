@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1712222214 source:d:\codeblocks\bitmapproject\src\bitmap.cpp
+	"Bitmap.h"
+	"iostream"
+
+1712392853 d:\codeblocks\bitmapproject\include\bitmap.h
+	<iostream>
+	<stdlib.h>
+	<vector>
+	<windows.h>
+
+1712393386 source:d:\codeblocks\bitmapproject\main.cpp
+	<tchar.h>
+	<windows.h>
+	<Bitmap.h>
+	<Image.h>
+	<iostream>
+
+1712393639 source:d:\codeblocks\bitmapproject\src\image.cpp
+	"Image.h"
+	"windows.h"
+
+1712393641 d:\codeblocks\bitmapproject\include\image.h
+	<iostream>
+	<windows.h>
+	<Bitmap.h>
+
