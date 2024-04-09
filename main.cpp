@@ -11,31 +11,71 @@
 #include <Windows.h>
 #include "include/Image.h"
 
-HWND hImage, hBtn ;
+// HWND - handler Window 
+// HDC  - handler device context 
+
+HWND hImage, hBtn1, hBtn2, hBtn3, Options;
 
 
 void createControls(HWND hwnd)
 {
-
     hImage = CreateWindow(TEXT("STATIC"), TEXT(""), WS_VISIBLE | WS_CHILD , 20, 20, 200, 200, hwnd, NULL, NULL, NULL);
-    hBtn = CreateWindow(TEXT("BUTTON"), TEXT("Btn"), WS_VISIBLE | WS_CHILD, 400, 20, 50, 30, hwnd, NULL, NULL, NULL);
+    hBtn1 = CreateWindow(TEXT("BUTTON"), TEXT("Btn"), WS_VISIBLE | WS_CHILD, 400, 20, 50, 50, hwnd, NULL, NULL, NULL);
+    hBtn2 = CreateWindow(TEXT("BUTTON"), TEXT("Btn"), WS_VISIBLE | WS_CHILD, 470, 20, 50, 50, hwnd, NULL, NULL, NULL);
+    hBtn3 = CreateWindow(TEXT("BUTTON"), TEXT("Btn"), WS_VISIBLE | WS_CHILD, 540, 20, 50, 50, hwnd, NULL, NULL, NULL);
+    //Options = CreateWindow(TEXT("COMBOBOX"), TEXT("Btn"), WS_VISIBLE | WS_CHILD | CBS_DROPDOWN, 540, 80, 50, 50, hwnd, NULL, NULL, NULL);
+}
+
+void BitmapWorkPlace(void)
+{
+
 
 }
+
+void ImageWorkPlace(void)
+{
+    HDC hdc = GetDC(hImage); /// HDC - handle device context
+    Image img("D:\\CodeBlocks\\BitmapProject\\images\\aparat_foto.bmp");
+    Image img2("D:\\CodeBlocks\\BitmapProject\\images\\atentie.bmp");
+
+    
+    hdc << img.to_grayscale();
+
+}
+
+void ToolsWorkPlace(void)
+{
+
+
+}
+
 void workplace()
 {
 
 
-    HDC hdc = GetDC(hImage); /// HDC - handle device context
+   
 
    
-    Image img("D:\\CodeBlocks\\BitmapProject\\images\\aparat_foto.bmp");
-    Image img2("D:\\CodeBlocks\\BitmapProject\\images\\atentie.bmp");
+    
+
+    // Bitmap btm(130,130);
+
+    // btm.draw(hdc);
 
     //Image img3(150,150);
 
-    img2 = img;
+    // btm.clear();
+    // btm = img;
+    // // std::cout << btm.get_width();
 
-    hdc << img2;
+    // //img2 = img
+
+    // btm.draw(hdc);
+
+    
+
+
+
 
 
 
@@ -129,12 +169,21 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
 /*  This function is called by the Windows function DispatchMessage()  */
 
 
+
+
 LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)                  /* handle the messages */
     {
+        case WM_MOUSEWHEEL:
+           std::cout <<(short) HIWORD(wParam) << '\n';
+
+        break;
         case WM_COMMAND:
-            workplace();
+
+            if((HWND)lParam==hBtn1){BitmapWorkPlace();}
+            if((HWND)lParam==hBtn2){ImageWorkPlace();}
+            if((HWND)lParam==hBtn3){ToolsWorkPlace();}
         break;
         case WM_CREATE:
             createControls(hwnd);

@@ -5,17 +5,23 @@
 #include <Windows.h>
 #include "Bitmap.h"
 
+/*
+    Clasa Image se ocupa cu incarcarea, salvarea si afisarea imaginilor -
+    Atentie! se lucreaza cu un obiect care exista in memorie
+*/
 
 class Image:public Bitmap
 {
-
     public:
         Image(std::string FileName);
         Image(const Image& other);
+        
+
+        // de implementat
+        Image(std::string FileName, POINT start, POINT end);
+        void save_as(std::string path, std::string name);
 
         Image& operator=(const Image& other);
-
-        Bitmap* convert_to_grayscale(void)const;
 
         friend HDC operator<<(const HDC hdc, const Image& img);
     private:
@@ -49,7 +55,6 @@ class Image:public Bitmap
 
                 return *this;
             }
-
 
         }Bfh; 
 

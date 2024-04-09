@@ -104,35 +104,55 @@ Image& Image::operator=(const Image& other)
 
 HDC operator<<(const HDC hdc, const Image& img)
 {
-    img.draw({0,0},hdc);
+    img.draw(hdc,{0,0});
     return hdc;
 }
 
-
-
-
-// Bitmap* Image::convert_to_grayscale(void)const
+// Image& Image::to_grayscale(void)const
 // {
-//         unsigned char cTag[4];
 //         int shift = (bytes_per_pixel_==4)?(1):(0);
-//         int unsigned media;
+//         unsigned int media;
 
-//         //Image auxImage(*this);
-
-//         cTag[0]=0; //Dump (daca bytes per pixel este 3)
+//         Image* auxImg = new Image(*this);
 
 //         for(int i=0; i<width_*height_; i++){
+//             media =0;
 //             for(int j=shift; j<bytes_per_pixel_; j++)
-//                 cTag[j] = data_[j+i*bytes_per_pixel_];
-        
-//             media=static_cast<unsigned char>
-//             (static_cast<int>(cTag[0]+cTag[1]+cTag[2]+cTag[3])/bytes_per_pixel_);
+//                 media+=static_cast<unsigned int> (data_[i*bytes_per_pixel_+j]);
+
+//             media=static_cast<unsigned char>(media/bytes_per_pixel_);
 
 //             for(int j=shift; j<bytes_per_pixel_; j++)
-//                // auxImage.data_[j+i*bytes_per_pixel_]=media;
+//                 auxImg->data_[i*bytes_per_pixel_+j]=media;
 //         }
 
-//         //return &auxImage;
+//         return *auxImg;
 // }
+
+// Image& Image::adjust_brightness(void)const
+// {
+//         int shift = (bytes_per_pixel_==4)?(1):(0);
+//         unsigned int media;
+
+//         Image* auxImg = new Image(*this);
+
+//         for(int i=0; i<width_*height_; i++){
+//             media = 0;
+//             for(int j=shift, media=0; j<bytes_per_pixel_; j++)
+//                 media+=static_cast<unsigned int> (data_[i*bytes_per_pixel_+j]);
+              
+//                 // size_t newRed   = truncate(data_[i*bytes_per_pixel_+j] + brightAdjust);
+//                 // size_t newGreen = truncate(data_[i*bytes_per_pixel_+j] + brightAdjust);
+//                 // size_t newBlue  = truncate(data_[i*bytes_per_pixel_+j] + brightAdjust);
+
+//             media=static_cast<unsigned char>(media/bytes_per_pixel_);
+
+//             for(int j=shift; j<bytes_per_pixel_; j++)
+//                 auxImg->data_[i*bytes_per_pixel_+j]=media;
+//         }
+
+//         return *auxImg;
+// }
+
 
 
